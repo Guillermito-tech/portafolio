@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - GUILLERMO J. CUEVAS G.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a001a;
+            --neon-red: #ff0033;
+            --neon-blue: #00eeff;
+            --neon-purple: #b300ff;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --card-bg: rgba(30, 0, 30, 0.7);
+            --portfolio: #2a0a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(179, 0, 255, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 43, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
+                linear-gradient(135deg, var(--primary-bg) 0%, var(--portfolio) 100%);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Efecto de scan lines más pronunciado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15) 0px,
+                    rgba(0, 0, 0, 0.15) 2px,
+                    transparent 2px,
+                    transparent 4px
+                );
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: overlay;
+        }
+
+        /* Efecto de niebla tétrica */
+        .fog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(50, 0, 50, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 70%, rgba(30, 0, 30, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: fogMove 40s infinite linear;
+        }
+
+        @keyframes fogMove {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-2%, 1%) scale(1.05); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Esporas flotantes */
+        .spores {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .spore {
+            position: absolute;
+            background: rgba(179, 0, 255, 0.4);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: floatSpore 15s infinite linear;
+        }
+
+        @keyframes floatSpore {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* RAYOS ROJOS VISIBLES - CORREGIDOS */
+        .lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .lightning-flash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(255, 0, 0, 0.6) 0%,
+                rgba(255, 50, 50, 0.4) 40%,
+                rgba(255, 100, 100, 0.2) 70%,
+                transparent 100%
+            );
+            animation: lightningFlash 1.5s ease-out;
+        }
+
+        @keyframes lightningFlash {
+            0% { 
+                opacity: 0;
+                filter: brightness(1);
+            }
+            10% { 
+                opacity: 0.8;
+                filter: brightness(3);
+            }
+            20% { 
+                opacity: 0.4;
+                filter: brightness(2);
+            }
+            30% { 
+                opacity: 0.7;
+                filter: brightness(2.5);
+            }
+            40% { 
+                opacity: 0.3;
+                filter: brightness(1.5);
+            }
+            50% { 
+                opacity: 0.6;
+                filter: brightness(2);
+            }
+            60% { 
+                opacity: 0.2;
+                filter: brightness(1.2);
+            }
+            70% { 
+                opacity: 0.4;
+                filter: brightness(1.5);
+            }
+            80% { 
+                opacity: 0.1;
+                filter: brightness(1.1);
+            }
+            100% { 
+                opacity: 0;
+                filter: brightness(1);
+            }
+        }
+
+        /* Rayos rojos en el fondo - más visibles */
+        .red-lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 0, 0, 0.3) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255, 50, 50, 0.2) 50%, transparent 70%),
+                radial-gradient(circle at 30% 40%, rgba(255, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 50, 50, 0.15) 0%, transparent 50%);
+            background-size: 400% 400%, 400% 400%, 200% 200%, 200% 200%;
+            animation: redLightning 25s infinite linear;
+        }
+
+        @keyframes redLightning {
+            0% {
+                opacity: 0.05;
+                background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            20% {
+                opacity: 0.05;
+            }
+            30% {
+                opacity: 0.08;
+            }
+            40% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.1;
+                background-position: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+            }
+            60% {
+                opacity: 0.05;
+            }
+            70% {
+                opacity: 0.07;
+            }
+            80% {
+                opacity: 0.03;
+            }
+            90% {
+                opacity: 0.06;
+            }
+            100% {
+                opacity: 0.05;
+                background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+            }
+        }
+
+        /* Rayos individuales - NUEVO EFECTO */
+        .lightning-bolt {
+            position: fixed;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(255, 0, 0, 0.8) 10%, 
+                rgba(255, 100, 100, 1) 30%, 
+                rgba(255, 200, 200, 0.9) 50%, 
+                rgba(255, 100, 100, 0.7) 70%, 
+                transparent 100%);
+            filter: blur(1px);
+            box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.7);
+            z-index: 2;
+            opacity: 0;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(10, 0, 10, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-red);
+            box-shadow: 
+                0 0 15px rgba(255, 0, 43, 0.5),
+                inset 0 1px 0 rgba(255, 0, 43, 0.2);
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 
+                0 0 10px var(--neon-red),
+                0 0 20px var(--neon-red),
+                0 0 30px var(--neon-red);
+            animation: neon-flicker 3s infinite alternate;
+        }
+
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 10px var(--neon-red),
+                    0 0 20px var(--neon-red),
+                    0 0 30px var(--neon-red);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.7;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 
+                0 0 10px rgba(0, 238, 255, 0.5),
+                inset 0 0 10px rgba(0, 238, 255, 0.2);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-red), var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 
+                0 0 20px rgba(255, 0, 43, 0.7),
+                0 0 40px rgba(179, 0, 255, 0.5);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            from {
+                filter: hue-rotate(0deg);
+            }
+            to {
+                filter: hue-rotate(30deg);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            text-shadow: 0 0 5px rgba(224, 224, 255, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--neon-red);
+            position: relative;
+            min-height: 250px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Efecto de terminal - cursor parpadeante */
+        .terminal-text {
+            position: relative;
+            text-align: left;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2rem;
+            background-color: var(--neon-blue);
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* FOTO DE PERFIL CON MARCO STRANGER THINGS */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid transparent;
+        }
+
+        /* Marco estilo Stranger Things con luces parpadeantes */
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, 
+                var(--neon-red), 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-red));
+            background-size: 400% 400%;
+            z-index: 1;
+            animation: 
+                border-glow 3s ease infinite,
+                stranger-flicker 2s infinite alternate;
+            filter: blur(8px);
+        }
+
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, 
+                var(--neon-red), 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-red));
+            background-size: 400% 400%;
+            z-index: 1;
+            animation: 
+                border-glow 3s ease infinite,
+                stranger-flicker 1.5s infinite alternate-reverse;
+            opacity: 0.7;
+        }
+
+        @keyframes border-glow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes stranger-flicker {
+            0%, 100% {
+                opacity: 0.8;
+                box-shadow: 
+                    0 0 20px var(--neon-red),
+                    0 0 40px var(--neon-blue),
+                    0 0 60px var(--neon-purple);
+            }
+            25% {
+                opacity: 0.5;
+                box-shadow: 
+                    0 0 15px var(--neon-red),
+                    0 0 30px var(--neon-blue),
+                    0 0 45px var(--neon-purple);
+            }
+            50% {
+                opacity: 0.9;
+                box-shadow: 
+                    0 0 25px var(--neon-red),
+                    0 0 50px var(--neon-blue),
+                    0 0 75px var(--neon-purple);
+            }
+            75% {
+                opacity: 0.6;
+                box-shadow: 
+                    0 0 18px var(--neon-red),
+                    0 0 35px var(--neon-blue),
+                    0 0 55px var(--neon-purple);
+            }
+        }
+
+        /* Partículas flotantes alrededor de la foto */
+        .profile-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float-particle 4s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, -100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.8rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 0, 43, 0.3);
+        }
+
+        .social-link:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            transform: translateY(-3px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
+        }
+
+        /* SECCIONES */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .section {
+            background: rgba(20, 0, 20, 0.8);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 5px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 
+                0 0 25px rgba(0, 238, 255, 0.3),
+                inset 0 0 25px rgba(0, 238, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            animation: scan-line 3s linear infinite;
+        }
+
+        @keyframes scan-line {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .section:hover {
+            border-color: var(--neon-red);
+            box-shadow: 
+                0 0 35px rgba(255, 0, 43, 0.5),
+                inset 0 0 35px rgba(255, 0, 43, 0.2);
+        }
+
+        h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--neon-red);
+            box-shadow: 0 0 10px var(--neon-red);
+        }
+
+        h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--neon-red);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px var(--neon-red);
+            letter-spacing: 1px;
+        }
+
+        /* TARJETAS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(30, 0, 30, 0.7);
+            padding: 2rem;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            min-height: 280px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 238, 255, 0.1),
+                transparent
+            );
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            border-color: var(--neon-red);
+            box-shadow: 
+                0 0 25px rgba(255, 0, 43, 0.4),
+                inset 0 0 25px rgba(255, 0, 43, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* IMÁGENES */
+        .image-placeholder {
+            background: rgba(10, 0, 10, 0.7);
+            border: 1px dashed rgba(0, 238, 255, 0.5);
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder::before {
+            content: '>';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-red);
+            animation: blink 1s infinite;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--neon-red);
+            color: var(--text-primary);
+            box-shadow: 0 0 15px rgba(255, 0, 43, 0.3);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(5, 0, 5, 0.9);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--neon-blue);
+            position: relative;
+            z-index: 5;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+
+        /* BOTÓN VOLVER ARRIBA */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--neon-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 
+                0 0 25px rgba(255, 0, 43, 0.7),
+                0 0 50px rgba(255, 0, 43, 0.5);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-to-top:hover {
+            background: var(--neon-blue);
+            box-shadow: 
+                0 0 35px rgba(0, 238, 255, 0.8),
+                0 0 60px rgba(0, 238, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SCROLL SMOOTH */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* NUEVOS ESTILOS PARA NAVEGACIÓN POR SECCIONES */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .nav-link.active {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 
+                0 0 10px rgba(0, 238, 255, 0.5),
+                inset 0 0 10px rgba(0, 238, 255, 0.2);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            background: rgba(30, 0, 30, 0.7);
+            color: var(--neon-blue);
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--neon-blue);
+            border-radius: 3px;
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--neon-blue);
+            color: var(--primary-bg);
+            box-shadow: 0 0 15px rgba(0, 238, 255, 0.7);
+        }
+
+        /* ESTILOS PARA VISUALIZACIÓN DE PDFs */
+        .pdf-viewer {
+            background: rgba(10, 0, 10, 0.8);
+            border: 1px solid var(--neon-purple);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-preview {
+            background: rgba(20, 0, 20, 0.9);
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-preview:hover {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 15px rgba(255, 0, 43, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .pdf-preview h4 {
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pdf-preview p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .pdf-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .pdf-modal.active {
+            display: flex;
+        }
+
+        .pdf-container {
+            width: 90%;
+            height: 90%;
+            background: var(--primary-bg);
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 238, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .pdf-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 2001;
+        }
+
+        .pdf-control-btn {
+            background: var(--neon-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .pdf-control-btn:hover {
+            background: var(--neon-blue);
+            transform: scale(1.1);
+        }
+
+        .pdf-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .pdf-thumbnail {
+            background: rgba(20, 0, 20, 0.7);
+            border: 1px solid var(--neon-purple);
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-thumbnail:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 238, 255, 0.3);
+        }
+
+        .pdf-thumbnail i {
+            font-size: 2rem;
+            color: var(--neon-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-thumbnail h5 {
+            color: var(--neon-blue);
+            font-family: 'Orbitron', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-thumbnail p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- EFECTOS DE FONDO -->
+    <div class="fog"></div>
+    <div class="spores" id="spores"></div>
+    <div class="lightning" id="lightning"></div>
+    <div class="red-lightning"></div>
+    <div id="lightning-bolts"></div>
+
+    <!-- MODAL PARA VISUALIZAR PDFs -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-container">
+            <div class="pdf-controls">
+                <button class="pdf-control-btn" id="closePdf">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <iframe class="pdf-iframe" id="pdfFrame" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="#inicio" class="logo">
+                <i class="fas fa-ghost"></i>
+                PORTAFOLIO
+            </a>
+            <nav class="nav-links">
+                <a href="#inicio" class="nav-link active">INICIO</a>
+                <a href="#proyectos" class="nav-link">PROYECTOS</a>
+                <a href="#habilidades" class="nav-link">HABILIDADES</a>
+                <a href="#contacto" class="nav-link">CONTACTO</a>
+            </nav>
+        </div>
+    </header>
+
+<!-- SECCIÓN HERO -->
+<section id="inicio" class="page-section active">
+    <div class="hero">
+        <div class="hero-content">
+            <div class="profile-img">
+                <img src="./images/foto-perfil.jpg" alt="Guillermo J. Cuevas G.">
+                <div class="profile-particles" id="profileParticles"></div>
+            </div>
+            <h1 class="hero-title">GUILLERMO J. CUEVAS G.</h1>
+            <div class="hero-subtitle">LIC. DESARROLLO Y GESTIÓN DE SOFTWARE // PORTAFOLIO</div>
+            <div class="hero-description">
+                <div id="terminal-text" class="terminal-text">
+                    <!-- El texto se generará dinámicamente con JavaScript -->
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/guill3_x" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:guillojesus20@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-terminal"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- SECCIÓN PROYECTOS -->
+    <section id="proyectos" class="page-section">
+        <div class="container">
+            <h2><i class="fas fa-folder-open"></i> PROYECTOS ACADÉMICOS</h2>
+            
+            <!-- INVESTIGACIONES - 2 INVESTIGACIONES -->
+            <div class="section">
+                <h2><i class="fas fa-search"></i> INVESTIGACIONES</h2>
+                
+                <div class="grid">
+                    <!-- INVESTIGACIÓN 1 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>INVESTIGACIÓN 1</h3>
+                        <p>Estructura y Jerarquía Visual en el Diseño</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/investigacion1.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Investigación 1 - Completa</h4>
+                                <p>Investigación sobre estructura y jerarquía visual en el diseño</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INVESTIGACIÓN 2 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>INVESTIGACIÓN 2</h3>
+                        <p>Segunda investigación académica</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/investigacion2.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Investigación 2 - Completa</h4>
+                                <p>Segunda investigación académica realizada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMENES - 2 PARCIALES -->
+            <div class="section">
+                <h2><i class="fas fa-file-alt"></i> EXÁMENES PARCIALES</h2>
+                
+                <div class="grid">
+                    <!-- EXAMEN PARCIAL 1 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>EXAMEN PARCIAL 1</h3>
+                        <p>Primera evaluación del sistema</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/examen_parcial_1.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Examen Parcial 1</h4>
+                                <p>Evaluación completa del primer parcial</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EXAMEN PARCIAL 2 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>EXAMEN PARCIAL 2</h3>
+                        <p>Segunda evaluación del sistema</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/examen_parcial_2.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Examen Parcial 2</h4>
+                                <p>Evaluación completa del segundo parcial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TALLERES - 2 TALLERES -->
+            <div class="section">
+                <h2><i class="fas fa-tools"></i> TALLERES PRÁCTICOS</h2>
+                
+                <div class="grid">
+                    <!-- TALLER 1 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>TALLER PRÁCTICO 1</h3>
+                        <p>Primera sesión de entrenamiento</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/taller1.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Taller Práctico 1 - Completo</h4>
+                                <p>Documentación completa del primer taller práctico</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TALLER 2 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>TALLER PRÁCTICO 2</h3>
+                        <p>Segunda sesión de entrenamiento</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/taller2.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Taller Práctico 2 - Completo</h4>
+                                <p>Documentación completa del segundo taller práctico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LABORATORIOS - 2 LABORATORIOS -->
+            <div class="section">
+                <h2><i class="fas fa-flask"></i> LABORATORIOS PRÁCTICOS</h2>
+                
+                <div class="grid">
+                    <!-- LABORATORIO 1 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>LABORATORIO PRÁCTICO 1</h3>
+                        <p>Experimentos iniciales</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/laboratorio1.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Laboratorio Práctico 1</h4>
+                                <p>Documentación completa del laboratorio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LABORATORIO 2 -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>LABORATORIO PRÁCTICO 2</h3>
+                        <p>Análisis avanzado</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/laboratorio2.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Laboratorio Práctico 2</h4>
+                                <p>Análisis detallado de resultados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EJERCICIOS - 1 EJERCICIO -->
+            <div class="section">
+                <h2><i class="fas fa-dumbbell"></i> EJERCICIOS PRÁCTICOS</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>EJERCICIO PRÁCTICO 1</h3>
+                        <p>Práctica de rutina - Desarrollo de Software</p>
+                        
+                        <div class="pdf-viewer">
+                            <div class="pdf-preview" data-pdf="documents/ejercicio1.pdf">
+                                <h4><i class="fas fa-file-pdf"></i> Ejercicio Práctico 1 - Completo</h4>
+                                <p>Documentación completa del ejercicio práctico realizado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN HABILIDADES -->
+    <section id="habilidades" class="page-section">
+        <div class="container">
+            <div class="section">
+                <h2><i class="fas fa-star"></i> HABILIDADES TÉCNICAS</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3>FRONTEND</h3>
+                        <p>HTML5 / CSS3 / JavaScript / React</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <h3>BACKEND</h3>
+                        <p>Java / Python</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>DATABASES</h3>
+                        <p>MySQL / MongoDB / MariaDB</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3>TOOLS</h3>
+                        <p>GitHub / GitKraken / Visual Code / Visual Studio 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="page-section">
+        <div class="container">
+            <div class="section">
+                <h2><i class="fas fa-envelope"></i> CONTACTO</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>UBICACIÓN</h3>
+                        <p>Chiriquí, Panamá</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>EMAIL</h3>
+                        <p>guillojesus20@gmail.com</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3>INSTAGRAM</h3>
+                        <p>@guill3_x</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="max-width:1200px; margin: 0 auto;">
+            <p>// SYSTEM STATUS: OPERATIONAL //</p>
+            <p style="margin-top: 1rem;">&copy; 2025 Portafolio Desarrollo de Software IV - Universidad Tecnológica de Panamá</p>
+        </div>
+    </footer>
+
+    <!-- BOTÓN VOLVER ARRIBA -->
+    <a href="#inicio" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Crear esporas flotantes
+        function createSpores() {
+            const sporesContainer = document.getElementById('spores');
+            const sporeCount = 40;
+            
+            for (let i = 0; i < sporeCount; i++) {
+                const spore = document.createElement('div');
+                spore.className = 'spore';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 15 + 5;
+                spore.style.width = size + 'px';
+                spore.style.height = size + 'px';
+                
+                // Posición aleatoria
+                spore.style.left = Math.random() * 100 + 'vw';
+                spore.style.top = Math.random() * 100 + 'vh';
+                
+                // Color aleatorio (tonalidades púrpura)
+                const hue = Math.random() * 30 + 270;
+                const opacity = Math.random() * 0.5 + 0.2;
+                spore.style.background = `rgba(${hue}, ${Math.random() * 100}, 255, ${opacity})`;
+                
+                // Duración de animación aleatoria
+                spore.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                spore.style.animationDelay = Math.random() * 5 + 's';
+                
+                sporesContainer.appendChild(spore);
+            }
+        }
+
+        // Crear partículas alrededor de la foto de perfil
+        function createProfileParticles() {
+            const particlesContainer = document.getElementById('profileParticles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posición aleatoria alrededor del círculo
+                const angle = Math.random() * 360;
+                const distance = 120 + Math.random() * 40; // Distancia del centro
+                
+                particle.style.left = `calc(50% + ${Math.cos(angle * Math.PI / 180) * distance}px)`;
+                particle.style.top = `calc(50% + ${Math.sin(angle * Math.PI / 180) * distance}px)`;
+                
+                // Tamaño aleatorio
+                const size = 2 + Math.random() * 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Color aleatorio (tonalidades neón)
+                const colors = ['#ff0033', '#00eeff', '#b300ff'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                
+                // Duración de animación aleatoria
+                particle.style.animationDuration = (3 + Math.random() * 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Efecto de rayos rojos dramáticos
+        function createLightning() {
+            const lightningContainer = document.getElementById('lightning');
+            
+            function strike() {
+                const flash = document.createElement('div');
+                flash.className = 'lightning-flash';
+                lightningContainer.appendChild(flash);
+                
+                // Remover después de la animación
+                setTimeout(() => {
+                    flash.remove();
+                }, 1500);
+                
+                // Crear rayos individuales
+                createLightningBolts();
+                
+                // Programar próximo rayo
+                const nextStrike = Math.random() * 10000 + 5000; // Entre 5 y 15 segundos
+                setTimeout(strike, nextStrike);
+            }
+            
+            // Primer rayo
+            setTimeout(strike, 3000);
+        }
+
+        // Crear rayos individuales (efecto Stranger Things)
+        function createLightningBolts() {
+            const boltsContainer = document.getElementById('lightning-bolts');
+            const boltCount = Math.floor(Math.random() * 3) + 2; // 2-4 rayos
+            
+            for (let i = 0; i < boltCount; i++) {
+                const bolt = document.createElement('div');
+                bolt.className = 'lightning-bolt';
+                
+                // Posición aleatoria
+                const left = Math.random() * 100;
+                bolt.style.left = left + 'vw';
+                bolt.style.top = '0';
+                
+                // Longitud aleatoria
+                const height = 30 + Math.random() * 70;
+                bolt.style.height = height + 'vh';
+                
+                // Rotación aleatoria
+                const rotation = -15 + Math.random() * 30;
+                bolt.style.transform = `rotate(${rotation}deg)`;
+                
+                // Animación
+                bolt.style.animation = `lightningBolt ${0.5 + Math.random() * 1}s ease-out`;
+                
+                boltsContainer.appendChild(bolt);
+                
+                // Remover después de la animación
+                setTimeout(() => {
+                    bolt.remove();
+                }, 1500);
+            }
+        }
+
+        // Efecto de terminal (máquina de escribir)
+        function typeWriterEffect() {
+            const terminalText = document.getElementById('terminal-text');
+            const lines = [
+                "[SYSTEM ERROR]",
+                "Hola 👋",
+                "",
+                "Soy estudiante de la Universidad Tecnológica de Panamá, con muchas ganas de seguir aprendiendo y creciendo en diferentes áreas.",
+                "Me apasiona mucho el fútbol, especialmente seguir al FC Barcelona, cuyos colores incluso inspiran el estilo visual de mi portafolio.",
+                "Además, disfruto mucho de escuchar música y ver series."
+            ];
+            
+            let lineIndex = 0;
+            let charIndex = 0;
+            let currentLine = '';
+            
+            function typeLine() {
+                if (lineIndex < lines.length) {
+                    if (charIndex < lines[lineIndex].length) {
+                        currentLine += lines[lineIndex].charAt(charIndex);
+                        
+                        // Crear elemento para la línea actual
+                        if (charIndex === 0) {
+                            const lineElement = document.createElement('div');
+                            lineElement.className = 'terminal-line';
+                            terminalText.appendChild(lineElement);
+                        }
+                        
+                        // Actualizar el texto de la línea actual
+                        const currentLineElement = terminalText.lastChild;
+                        currentLineElement.textContent = currentLine;
+                        
+                        charIndex++;
+                        setTimeout(typeLine, 30); // Velocidad de escritura
+                    } else {
+                        // Línea completada, pasar a la siguiente
+                        currentLine = '';
+                        charIndex = 0;
+                        lineIndex++;
+                        
+                        // Pausa más larga entre líneas
+                        setTimeout(typeLine, 500);
+                    }
+                } else {
+                    // Todas las líneas completadas, agregar cursor
+                    const cursor = document.createElement('span');
+                    cursor.className = 'terminal-cursor';
+                    terminalText.appendChild(cursor);
+                }
+            }
+            
+            // Iniciar el efecto
+            setTimeout(typeLine, 1000);
+        }
+
+        // Añadir animación para rayos individuales
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes lightningBolt {
+                0% { 
+                    opacity: 0;
+                    height: 0;
+                }
+                10% { 
+                    opacity: 1;
+                    height: 10vh;
+                }
+                30% { 
+                    opacity: 0.8;
+                    height: 50vh;
+                }
+                50% { 
+                    opacity: 1;
+                    height: 80vh;
+                }
+                70% { 
+                    opacity: 0.6;
+                    height: 90vh;
+                }
+                100% { 
+                    opacity: 0;
+                    height: 100vh;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Navegación por secciones
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.page-section');
+            
+            // Mostrar sección activa
+            function showSection(sectionId) {
+                // Ocultar todas las secciones
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Remover clase activa de todos los enlaces
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Mostrar sección seleccionada
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Agregar clase activa al enlace correspondiente
+                document.querySelector(`.nav-link[href="#${sectionId}"]`).classList.add('active');
+                
+                // Scroll hacia arriba
+                window.scrollTo(0, 0);
+            }
+            
+            // Manejar clics en enlaces de navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                });
+            });
+            
+            // Mostrar sección de inicio por defecto
+            showSection('inicio');
+        }
+
+        // Mostrar/ocultar botón volver arriba
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Funcionalidad para visualizar PDFs
+        function initPDFViewer() {
+            const pdfModal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const closePdf = document.getElementById('closePdf');
+            const pdfPreviews = document.querySelectorAll('.pdf-preview, .pdf-thumbnail');
+            
+            // Abrir PDF en el modal
+            pdfPreviews.forEach(preview => {
+                preview.addEventListener('click', function() {
+                    const pdfPath = this.getAttribute('data-pdf');
+                    pdfFrame.src = pdfPath;
+                    pdfModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+                });
+            });
+            
+            // Cerrar modal
+            closePdf.addEventListener('click', function() {
+                pdfModal.classList.remove('active');
+                pdfFrame.src = '';
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            });
+            
+            // Cerrar modal al hacer clic fuera
+            pdfModal.addEventListener('click', function(e) {
+                if (e.target === pdfModal) {
+                    pdfModal.classList.remove('active');
+                    pdfFrame.src = '';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Cerrar modal con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+                    pdfModal.classList.remove('active');
+                    pdfFrame.src = '';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Efecto de escritura en placeholders
+        document.addEventListener('DOMContentLoaded', function() {
+            createSpores();
+            createProfileParticles(); // Crear partículas alrededor de la foto
+            createLightning();
+            initNavigation();
+            typeWriterEffect(); // Iniciar efecto de terminal
+            initPDFViewer(); // Iniciar funcionalidad de PDFs
+            
+            const placeholders = document.querySelectorAll('.image-placeholder');
+            placeholders.forEach(placeholder => {
+                const text = placeholder.textContent;
+                placeholder.textContent = '';
+                let i = 0;
+                
+                function typeWriter() {
+                    if (i < text.length) {
+                        placeholder.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                }
+                
+                // Iniciar efecto cuando el elemento sea visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            typeWriter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(placeholder);
+            });
+        });
+    </script>
+</body>
+</html>
